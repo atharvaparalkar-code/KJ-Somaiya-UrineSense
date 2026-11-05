@@ -1,0 +1,6 @@
+"code","patient","dob","doctor","date","status","colorimeter","nurse","notes","diagnosisComment","diagnosisBy","pH","Glucose","Protein","Ketones","Blood","Leukocytes","Nitrite","Specific gravity","Urobilinogen","Bilirubin"
+"KS-1974-975","Dev Purrohit","1974-05-29","gg","2026-11-02T06:17","requested","","","","","","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded"
+"KS-2007-008","Aaradhya Prabhawalkar","2007-04-11","Rudra","2026-11-02T06:15","recorded","Negetive","Renuka","","","","5.5","4+","4+","4+","2+","4+","Positive","1.025","8 mg/dL","Large"
+"KS-DEMO-003","Demo Patient C","1978-07-25","Dr. Demo","2026-10-22T08:00","requested","","","","","","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded","Not recorded"
+"KS-DEMO-002","Demo Patient B","1984-11-03","Dr. Demo","2026-10-21T11:15","recorded","","N-01","","","","5.5","3+","Negative","1+","Negative","Negative","Negative","Not recorded","Not recorded","Not recorded"
+"KS-DEMO-001","Demo Patient A","1990-04-12","Dr. Demo","2026-10-20T09:30","reviewed","","N-01","","Mild proteinuria. Repeat test in two weeks.","D-01","6.0","Negative","2+","Negative","Negative","Trace","Negative","1.020","Not recorded","Not recorded"

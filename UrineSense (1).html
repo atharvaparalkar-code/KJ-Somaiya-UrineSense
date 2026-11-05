@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>UrineSense | KJ Somaiya Hospital</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+
+:root{
+  --teal:#d7263d;--on:#fff;--navy:#172b3a;--mute:#657786;--line:#e2e8ed;
+  --bg:#f4f7f9;--card:#fff;--soft:#f4e9eb;--gold:#ef9a9a;
+  --warn:#a85a08;--warnbg:#fff2dc;--ok:#147d55;--okbg:#e2f6ed;
+  box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);
+  padding-bottom:env(safe-area-inset-bottom,0px);color-scheme:light
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{scroll-behavior:smooth}
+body{margin:0;font:15px/1.6 Inter,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--navy);background:var(--bg)}
+button,input,select,textarea{font:inherit;color:inherit}
+button{border:1px solid transparent;border-radius:12px;background:var(--teal);color:#fff;font-weight:650;padding:11px 17px;cursor:pointer;transition:background .18s ease,transform .18s ease,box-shadow .18s ease}
+button:hover{background:#066b76;box-shadow:0 5px 14px #087f8c22}
+button:active{transform:translateY(1px)}
+button.sec{background:#fff;color:#314958;border-color:#d9e2e8}
+button.sec:hover{background:#f1f6f8;box-shadow:none}
+button.sm{padding:7px 12px;font-size:13px;border-radius:9px}
+:focus-visible{outline:3px solid #e7b949;outline-offset:3px}
+h1,h2,h3{margin:0;line-height:1.25;letter-spacing:-.025em}
+h2{font-size:20px;font-weight:750}
+h3{font-size:16px}
+p{margin-top:8px}
+.mute{color:var(--mute)}.small{font-size:13px;color:var(--mute)}
+/* Landing */
+.hero{min-height:100vh;display:grid;place-items:center;padding:90px 24px 52px;position:relative;overflow:hidden;background:radial-gradient(ellipse at 82% 18%,#fde3e7 0,transparent 34%),radial-gradient(ellipse at 8% 92%,#e5edf9 0,transparent 38%),#f8fafb}
+.bar{position:absolute;top:24px;left:24px;right:24px;display:flex;justify-content:space-between;align-items:center;gap:12px;color:#526b78;font-size:13px}
+.logo{height:54px;width:auto;max-width:170px;object-fit:contain;background:#fff;border:1px solid var(--line);border-radius:12px;padding:4px}
+.hero-in{width:min(1060px,100%);color:var(--navy);position:relative;z-index:1}
+.hero h1{font-size:clamp(48px,8vw,78px);font-weight:800;letter-spacing:-.065em;color:var(--teal);margin:20px 0 12px}
+.hero h1 i{color:#91b9bd;font-style:normal}
+.hero p{max-width:620px;font-size:17px;color:#526b78}
+.pill{display:inline-flex;align-items:center;padding:7px 13px;border:1px solid #d0e6e6;border-radius:30px;background:#fff;color:#176b75;font-size:12px;font-weight:700;letter-spacing:.02em}
+.roles{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:32px}
+.role{text-align:left;background:#fff;color:var(--navy);padding:24px;border:1px solid #e1e9ed;border-radius:20px;box-shadow:0 8px 24px #263f4b08;transition:transform .2s ease,border-color .2s ease,box-shadow .2s ease;white-space:normal}
+.role:hover{transform:translateY(-4px);border-color:#ef9a9a;box-shadow:0 16px 36px #263f4b12;filter:none;background:#fff}
+.role b{display:block;font-size:20px;margin:14px 0 5px}.role span.d{display:block;font-weight:450;font-size:14px;line-height:1.55;color:var(--mute)}
+.ic{display:grid;place-items:center;width:48px;height:48px;border-radius:14px;font-size:23px;background:#e5f5f4}
+.role:nth-child(2) .ic{background:#fdecef;color:#d7263d}.role:nth-child(3) .ic{background:#fdecef;color:#d7263d}
+/* Login */
+.shell{min-height:100vh;display:grid;place-items:center;padding:28px;background:radial-gradient(ellipse at top right,#fde3e7,transparent 45%),var(--bg)}
+.card,.stat{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:24px;box-shadow:0 8px 24px #263f4b08}
+.login{width:min(440px,100%);display:grid;gap:14px}
+.eyebrow{font-size:12px;color:var(--teal);font-weight:800;letter-spacing:.09em;text-transform:uppercase}
+.f{display:grid;gap:6px;margin:0 0 13px}.f label{font-size:13px;font-weight:700;color:#405766}
+input,select,textarea{width:100%;padding:11px 13px;border:1px solid #d9e3e8;border-radius:11px;background:#fff;outline:none;transition:border-color .15s,box-shadow .15s}
+input:focus,select:focus,textarea:focus{border-color:#e57383;box-shadow:0 0 0 3px #087f8c14}
+input::placeholder,textarea::placeholder{color:#96a4ad}
+.notice{background:#fff8e9;color:#80530b;border:1px solid #f0dfb8;padding:12px 14px;border-radius:12px;font-size:13px}
+.err{color:#b42318;font-size:13px;min-height:18px;margin:0}
+/* App shell */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:#ffffffed;backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border-bottom:1px solid var(--line);padding:13px max(20px,calc((100% - 1160px)/2));display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.brand{font-weight:800;font-size:20px;color:var(--teal);letter-spacing:-.035em}.brand small{display:block;font-size:11px;font-weight:550;letter-spacing:0;color:var(--mute)}
+.hr{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+header .logo{height:44px}
+.tag{background:#fdecef;color:#a8182b;border-radius:9px;padding:6px 10px;font-size:12px;font-weight:750}
+main{max-width:1160px;margin:32px auto;padding:0 22px}
+main h1{font-size:clamp(29px,4vw,39px);font-weight:800;letter-spacing:-.045em;margin:7px 0 6px}
+.stats{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:14px;margin:24px 0}
+.stat{text-align:left;color:var(--navy);font-weight:500;display:block;width:100%;border:1px solid var(--line);cursor:pointer;box-shadow:0 4px 14px #263f4b05;transition:border-color .18s,box-shadow .18s,transform .18s}
+.stat:hover{transform:translateY(-2px);box-shadow:0 8px 20px #263f4b0c;background:#fff}
+.stat[aria-pressed=true]{border-color:#e57383;box-shadow:0 0 0 2px #087f8c18;background:#f4fbfb}
+.stat strong{display:block;font-size:30px;letter-spacing:-.04em;margin-top:4px}
+.row{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.tools{display:flex;gap:10px;flex-wrap:wrap;margin:16px 0 12px}
+.tools input{flex:1;min-width:220px;background:#f8fafb}
+.rec{display:grid;grid-template-columns:minmax(150px,1.1fr) minmax(180px,1.7fr) auto;gap:18px;align-items:center;padding:18px 0;border-top:1px solid var(--line)}
+.rec:first-child{border-top:0}.rec b{font-size:15px;font-weight:750}
+.chips{display:flex;gap:6px;flex-wrap:wrap}
+.chip{background:#eef3f5;color:#4c606d;border-radius:7px;padding:4px 8px;font-size:12px}
+.chip.ab{background:var(--warnbg);color:var(--warn);font-weight:700}.chip.ok{background:var(--okbg);color:var(--ok)}
+.st{display:inline-flex;align-items:center;border-radius:7px;padding:4px 9px;font-size:11px;font-weight:800;letter-spacing:.01em;background:#edf1f4;color:#5e707b}
+.st.s2{background:var(--warnbg);color:var(--warn)}.st.s3{background:var(--okbg);color:var(--ok)}
+.acts{display:flex;gap:7px;align-items:center;flex-wrap:wrap}.empty{text-align:center;padding:38px 18px;color:var(--mute)}
+.grid2{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.item{background:#f6f9fa;border:1px solid #e8eef1;border-radius:10px;padding:11px 13px;min-width:0;overflow-wrap:anywhere}
+.item small{display:block;color:var(--mute);font-size:11px;font-weight:650;margin-bottom:3px}
+dialog{border:1px solid #dce5e9;border-radius:20px;padding:0;width:min(760px,calc(100% - 24px));max-height:92vh;overflow:auto;background:var(--card);color:var(--navy);box-shadow:0 24px 80px #172b3a30}
+dialog::backdrop{background:rgba(21,42,54,.42);backdrop-filter:blur(3px)}
+.dlg{padding:24px;display:grid;gap:14px}
+.cmt{border:1px solid #efb8bf;border-radius:13px;padding:15px;background:#fff7f8}
+.foot{max-width:1160px;margin:0 auto;padding:0 22px 30px;font-size:12px;color:var(--mute)}
+.foot button{background:none;color:var(--teal);padding:0;font-size:12px;text-decoration:underline;border:0;box-shadow:none}
+#toast{position:fixed;right:18px;bottom:18px;z-index:99;display:grid;gap:8px}
+#toast div{background:#173c39;color:#fff;padding:12px 16px;border-radius:12px;font-weight:650;font-size:14px;max-width:340px;box-shadow:0 8px 28px #0002}
+#splash{position:fixed;inset:0;z-index:999;background:#f7fafb;display:grid;place-content:center;justify-items:center;gap:16px}
+.ring{width:40px;height:40px;border:4px solid #e3ecef;border-top-color:var(--teal);border-right-color:#8ac7c9;border-radius:50%;animation:sp .8s linear infinite}
+@keyframes sp{to{transform:rotate(360deg)}}
+.hrings{position:absolute;right:5%;top:50%;transform:translateY(-50%);width:min(300px,27vw);opacity:.85}
+.sum{display:flex;gap:28px;align-items:center;margin:20px 0;background:linear-gradient(120deg,#fff,#f8fbfc)}
+.rg{width:128px;flex:none}.lg{display:grid;gap:10px}.lg small{font-weight:700;font-size:12px}.big{font-size:25px;font-weight:800;line-height:1.1}.big span{font-size:14px;color:var(--mute);font-weight:550}
+@media(max-width:900px){.hrings{display:none}.rec{grid-template-columns:1fr 1.3fr}.rec .acts{grid-column:1/-1}}
+@media(max-width:760px){
+  .roles,.grid2{grid-template-columns:1fr}.stats{grid-template-columns:1fr 1fr}
+  .rec{grid-template-columns:1fr;gap:9px}.rec .acts{grid-column:auto}
+  .bar{left:18px;right:18px;top:16px}.bar .logo{height:44px}
+  .hero{padding:80px 18px 34px}.hero h1{font-size:54px}.hero p{font-size:16px}
+  main{margin:24px auto;padding:0 15px}header.top{padding:12px 15px}
+  .card,.stat{padding:18px}.sum{gap:16px}.rg{width:100px}.big{font-size:22px}
+  .dlg{padding:18px}.tools input{min-width:100%}
+}
+@media(max-width:390px){.stats{gap:8px}.stat{padding:14px}.stat strong{font-size:25px}.hr{gap:6px}.tag{font-size:11px}}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}}
+@media print{header,.tools,.foot,button{display:none!important}body{background:#fff}main{max-width:none}.card,.stat{box-shadow:none}}
+
+
+/* Animated medical heart + ECG accent */
+.heartbeat-mark{display:inline-flex;align-items:center;gap:9px;color:#d7263d;vertical-align:middle}
+.heartbeat-mark .heart{display:inline-block;color:#d7263d;transform-origin:center;animation:heart-beat 1.25s ease-in-out infinite}
+.heartbeat-mark svg{width:104px;height:28px;overflow:visible}
+.heartbeat-mark .ecg-base{fill:none;stroke:#f3a2ad;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round}
+.heartbeat-mark .ecg-pulse{fill:none;stroke:#d7263d;stroke-width:2.4;stroke-linecap:round;stroke-linejoin:round;stroke-dasharray:150;stroke-dashoffset:150;animation:ecg-draw 1.6s linear infinite}
+@keyframes heart-beat{0%,35%,65%,100%{transform:scale(1)}12%,48%{transform:scale(1.18)}}
+@keyframes ecg-draw{0%{stroke-dashoffset:150;opacity:.35}45%{opacity:1}100%{stroke-dashoffset:0;opacity:.85}}
+.brand .heartbeat-mark{margin-right:5px}
+.brand .heart{font-size:20px}
+.brand .heartbeat-mark svg{width:66px;height:22px}
+@media(prefers-reduced-motion:reduce){.heartbeat-mark .heart,.heartbeat-mark .ecg-pulse{animation:none}.heartbeat-mark .ecg-pulse{stroke-dashoffset:0}}
+
+
+/* Data structures lab */
+.tabs{display:flex;gap:8px;flex-wrap:wrap;margin:14px 0}
+.tab{background:#fff;color:#314958;border:1px solid #d9e2e8;padding:8px 14px;font-size:13px;border-radius:10px}
+.tab:hover{background:#f1f6f8;box-shadow:none}
+.tab[aria-selected=true]{background:var(--teal);color:#fff;border-color:var(--teal)}
+.ds{border:1px solid var(--line);border-radius:14px;padding:16px;margin-top:14px;background:#fbfcfd}
+.ds h3{margin-bottom:4px}
+.cells,.chain{display:flex;gap:8px;flex-wrap:wrap;align-items:stretch;margin-top:10px}
+.chain{flex-wrap:nowrap;overflow-x:auto;padding-bottom:6px}
+.cell{border:1.5px solid #b6c3cc;background:#fff;border-radius:9px;padding:6px 10px;font-size:12px;font-weight:650;min-width:78px;text-align:center}
+.cell small{display:block;color:var(--mute);font-size:10px;font-weight:700}
+.cell.hd{border-color:var(--teal);background:#fff3f5}
+.ln{border:1.5px solid #b6c3cc;background:#fff;border-radius:9px;padding:6px 10px;font-size:12px;min-width:150px;max-width:190px;flex:none}
+.ln small{display:block;color:var(--mute);font-size:10px}
+.ar{align-self:center;color:var(--teal);font-weight:800;flex:none}
+.scroll{overflow-x:auto;padding:6px 0}
+ul.tr{list-style:none;margin:6px 0 0;padding-left:18px;border-left:2px solid #e2e8ed}
+ul.tr li{margin:5px 0;font-size:13px}
+.bars{display:flex;align-items:flex-end;gap:6px;height:170px;margin-top:12px;overflow-x:auto}
+.bw{display:flex;flex-direction:column;align-items:center;justify-content:flex-end;height:100%;flex:none;width:34px}
+.b{width:100%;background:#cfd9df;border-radius:6px 6px 0 0;display:flex;justify-content:center;align-items:flex-start;font-size:11px;font-weight:700;color:#314958;transition:height .2s}
+.b.on{background:var(--teal);color:#fff}
+.bw small{font-size:10px;color:var(--mute);margin-top:3px}
+.dt{width:100%;border-collapse:collapse;font-size:13px;margin-top:10px}
+.dt th,.dt td{text-align:left;padding:7px 9px;border-bottom:1px solid var(--line);vertical-align:top}
+.dt th{font-size:11px;color:var(--mute);text-transform:uppercase;letter-spacing:.04em}
+.ctl{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin-top:10px}
+.ctl input,.ctl select{width:auto;min-width:160px}
+.hbar{height:9px;border-radius:5px;background:var(--teal);min-width:2px}
+</style></head><body>
+<div id="splash" hidden><div style="font-size:60px;color:#ff375f;line-height:1">♥</div><div class="ring"></div><b class="mute">Preparing your workspace…</b></div>
+<div id="toast" role="status" aria-live="polite"></div>
+
+<section id="roles" class="hero"><div class="bar"><span class="heartbeat-mark"><span class="heart" aria-hidden="true">♥</span><svg viewBox="0 0 150 36" aria-label="Animated heartbeat line" role="img"><path class="ecg-base" d="M2 19 H35 L45 19 L52 8 L61 29 L70 3 L81 24 L89 19 H148"/><path class="ecg-pulse" d="M2 19 H35 L45 19 L52 8 L61 29 L70 3 L81 24 L89 19 H148"/></svg><span>Care begins with hope.</span></span></div><div id="hrings" class="hrings"></div>
+<div class="hero-in"><span class="pill">✚ KJ Somaiya Hospital · Digital Health Desk</span><h1>UrineSense<i>.</i></h1>
+<p>A simple urine-strip screening record system for hospital staff and patients. Choose your role to continue.</p>
+<div class="roles">
+<button class="role" onclick="pick('Doctor')"><span class="ic">⚕️</span><b>Doctor</b><span class="d">Create test requests, review readings and add clinical comments.</span></button>
+<button class="role" onclick="pick('Nurse')"><span class="ic">🩺</span><b>Nurse</b><span class="d">Enter urine-strip readings for requested tests or walk-in samples.</span></button>
+<button class="role" onclick="pick('User')"><span class="ic">👤</span><b>Patient</b><span class="d">View your reviewed result with your sample code and date of birth.</span></button></div>
+<p class="small" style="color:#e9f4f4;margin-top:20px">Academic prototype · Demo data only · Not connected to hospital systems</p></div></section>
+
+<section id="login" class="shell" hidden><form id="lf" class="card login">
+<div class="eyebrow">KJ Somaiya Hospital</div><h1 id="lt"></h1><p id="ld" class="mute" style="margin:0"></p>
+<div id="fStaff"><div class="f"><label for="uid" id="il">Staff ID</label><input id="uid" autocomplete="username"></div><div class="f"><label for="pw">Password</label><input id="pw" type="password" autocomplete="current-password"></div></div>
+<div id="fPat" hidden><div class="f"><label for="pc">Sample code</label><input id="pc" placeholder="e.g. KS-2026-001"></div><div class="f"><label for="pd">Date of birth</label><input id="pd" type="date"></div></div>
+<p id="le" class="err" role="alert"></p>
+<button type="submit">Sign in</button><button type="button" class="sec" onclick="home()">← Back to role selection</button>
+<p class="notice" style="margin:0">Demo mode: staff can use any ID and password. This is not real authentication. Do not enter real patient data.</p></form></section>
+
+<div id="app" hidden>
+<header class="top"><div class="brand"><span class="heartbeat-mark"><span class="heart" aria-hidden="true">♥</span><svg viewBox="0 0 150 36" aria-label="Animated heartbeat line" role="img"><path class="ecg-base" d="M2 19 H35 L45 19 L52 8 L61 29 L70 3 L81 24 L89 19 H148"/><path class="ecg-pulse" d="M2 19 H35 L45 19 L52 8 L61 29 L70 3 L81 24 L89 19 H148"/></svg></span>UrineSense<small>KJ Somaiya Hospital · Screening records</small></div><div class="hr"><span id="tag" class="tag"></span><button class="sec sm" onclick="home()">Sign out</button></div></header>
+<main><div class="eyebrow" id="eb"></div><h1 id="ti"></h1><p class="mute" id="le2" style="margin:0"></p>
+<div id="staff"><div id="sum" class="card sum"></div><div id="stats" class="stats"></div>
+<div class="card"><div class="row" style="margin-bottom:12px"><h2>Screening records</h2><div class="acts" id="acts"></div></div>
+<div class="tools"><input id="q" type="search" aria-label="Search records" placeholder="Search by patient, code, doctor or date" oninput="draw()">
+<select id="sk" aria-label="Sort by" style="width:auto" onchange="draw()"><option value="none">Sort: newest added</option><option value="date">Sort: sample date</option><option value="patient">Sort: patient name</option><option value="code">Sort: sample code</option><option value="abn">Sort: abnormal findings</option><option value="status">Sort: status</option></select>
+<select id="sa" aria-label="Sorting algorithm" style="width:auto" onchange="draw()"><option value="merge">Merge sort</option><option value="quick">Quick sort</option><option value="insertion">Insertion sort</option><option value="bubble">Bubble sort</option></select>
+<select id="sd" aria-label="Sort direction" style="width:auto" onchange="draw()"><option value="1">Ascending</option><option value="-1">Descending</option></select></div>
+<div id="sortinfo" class="small" style="margin-bottom:6px"></div><div id="list"></div></div>
+<div id="lab" class="card" style="margin-top:18px"></div></div>
+<div id="pat" hidden></div>
+<p class="notice" style="margin-top:18px"><b>Clinical safety:</b> Urine-strip results are screening observations, not a diagnosis. A qualified clinician must interpret them.</p></main>
+<div class="foot">Demo records stay in this browser only. Do not use real patient data. Production use requires secure authentication, role-based access, encryption, audit logs and clinical validation. <button onclick="seed(true)">Reset demo data</button></div></div>
+
+<dialog id="dReq"><form id="fReq" class="dlg"><h2>New test request</h2>
+<div class="f"><label for="rp">Patient’s name *</label><input id="rp" required></div>
+<div class="f"><label for="rd">Date of birth *</label><input id="rd" type="date" required></div>
+<div class="f"><label for="rc">Sample code *</label><input id="rc" required></div>
+<div class="f"><label for="rn">Tests requested / note for nurse</label><textarea id="rn" rows="2"></textarea></div>
+<p id="re" class="err" role="alert"></p><div class="acts"><button>Send to nurse</button><button type="button" class="sec" onclick="E('dReq').close()">Cancel</button></div></form></dialog>
+
+<dialog id="dEnt"><form id="fEnt" class="dlg"><h2 id="et">Enter urine-strip readings</h2><p class="small" style="margin:0">Copy values from the doctor’s file and the strip colour chart. Leave unknown values as “Not recorded”.</p>
+<input type="hidden" id="eid"><div class="grid2"><div>
+<div class="f"><label for="edr">Doctor’s name *</label><input id="edr" required></div>
+<div class="f"><label for="epa">Patient’s name *</label><input id="epa" required></div>
+<div class="f"><label for="edb">Date of birth *</label><input id="edb" type="date" required></div>
+<div class="f"><label for="eco">Sample code *</label><input id="eco" required></div>
+<div class="f"><label for="eda">Sample date and time *</label><input id="eda" type="datetime-local" required></div>
+<div class="f"><label for="eci">Colorimeter reading</label><input id="eci"></div>
+<div class="f"><label for="eno">Nurse notes</label><textarea id="eno" rows="2"></textarea></div></div>
+<div id="sels"></div></div>
+<p id="ee" class="err" role="alert"></p><div class="acts"><button>Save record</button><button type="button" class="sec" onclick="E('dEnt').close()">Cancel</button></div></form></dialog>
+
+<dialog id="dView"><div class="dlg"><div class="row"><h2 id="vt">Record</h2><button class="sec sm" onclick="E('dView').close()">Close</button></div><div id="vc"></div>
+<form id="fCmt" class="cmt" hidden><label for="cm"><b>Doctor’s diagnosis / clinical comment *</b></label>
+<textarea id="cm" rows="4" required minlength="3" style="margin-top:8px" placeholder="Add your clinical interpretation or follow-up note"></textarea>
+<p id="ce" class="err" role="alert"></p><button>Save comment &amp; mark reviewed</button></form></div></dialog>
+
+<script>
+const E=id=>document.getElementById(id),K='kjurine_records',S='kjurine_session';
+const L=['Negative','Trace','1+','2+','3+','4+'];
+const P={'pH':['5.0','5.5','6.0','6.5','7.0','7.5','8.0','8.5','9.0'],'Glucose':L,'Protein':L,'Ketones':L,'Blood':L,'Leukocytes':L,'Nitrite':['Negative','Positive'],'Specific gravity':['1.000','1.005','1.010','1.015','1.020','1.025','1.030'],'Urobilinogen':['Normal','0.2 mg/dL','1 mg/dL','2 mg/dL','4 mg/dL','8 mg/dL'],'Bilirubin':['Negative','Small','Moderate','Large']};
+const KEYS=Object.keys(P);
+const ROLES={Doctor:['Doctor login','Sign in to create requests and review readings.','Doctor ID'],Nurse:['Nurse login','Sign in to enter urine-strip readings.','Nurse / Staff ID'],User:['Patient login','Enter your sample code and date of birth to view your result.']};
+const RC=['#fa114f','#92e82a','#1eeaef'];
+function rings(v){return'<svg viewBox="0 0 120 120" role="img" aria-label="Progress rings">'+[52,38,24].map((r,i)=>{let c=2*Math.PI*r;return`<g transform="rotate(-90 60 60)"><circle cx="60" cy="60" r="${r}" fill="none" stroke="${RC[i]}" stroke-opacity=".22" stroke-width="11"/><circle cx="60" cy="60" r="${r}" fill="none" stroke="${RC[i]}" stroke-width="11" stroke-linecap="round" stroke-dasharray="${Math.max(c*v[i],.01)} ${c}"/></g>`}).join('')+'</svg>'}
+E('hrings').innerHTML=rings([.8,.62,.45]);
+let role='',uid='',pcode='',pdob='',filter='all',viewId=null;
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const load=()=>{try{return JSON.parse(localStorage.getItem(K)||'[]')}catch(e){return[]}};
+const put=r=>{try{const prev=localStorage.getItem(K);if(prev&&prev!=='[]')UNDO.push(prev);localStorage.setItem(K,JSON.stringify(r))}catch(e){toast('Browser storage is unavailable, so changes will not be kept.')}};
+const stat=r=>r.status||(r.diagnosisComment?'reviewed':'recorded');
+const SN={requested:['Awaiting readings',''],recorded:['Awaiting review','s2'],reviewed:['Reviewed','s3']};
+const when=d=>{let x=new Date(d);return isNaN(x)?(d||'—'):x.toLocaleString('en-IN',{dateStyle:'medium',timeStyle:'short'})};
+const dob=d=>{let x=new Date(d);return isNaN(x)?(d||'—'):x.toLocaleDateString('en-IN',{dateStyle:'medium'})};
+function toast(m){let d=document.createElement('div');d.textContent=m;E('toast').append(d);setTimeout(()=>d.remove(),3800)}
+function abn(k,v){if(!v||v==='Not recorded'||v==='Refer to strip scale')return false;
+ if(k==='pH')return v<5||v>8;if(k==='Specific gravity')return v<1.005||v>1.03;
+ return !['Negative','Normal','0.2 mg/dL','1 mg/dL'].includes(v)}
+function chips(r,all){let e=Object.entries(r.readings||{}).filter(([k,v])=>v&&v!=='Not recorded');
+ if(!e.length)return'<span class="small">No readings yet</span>';
+ let a=e.filter(([k,v])=>abn(k,v));
+ if(all)return e.map(([k,v])=>`<span class="chip ${abn(k,v)?'ab':''}">${esc(k)}: ${esc(v)}</span>`).join('');
+ return a.length?a.slice(0,4).map(([k,v])=>`<span class="chip ab">${esc(k)}: ${esc(v)}</span>`).join('')+(a.length>4?`<span class="chip">+${a.length-4} more</span>`:''):'<span class="chip ok">All recorded values in expected range</span>'}
+function seed(force){if(!force&&load().length)return;if(force&&!confirm('Replace all records in this browser with demo data?'))return;
+ let t=Date.now(),mk=(i,o)=>({id:t+i,readings:Object.fromEntries(KEYS.map(k=>[k,'Not recorded'])),...o});
+ let a=mk(1,{code:'KS-DEMO-001',patient:'Demo Patient A',dob:'1990-04-12',doctor:'Dr. Demo',date:'2026-10-20T09:30',nurse:'N-01',status:'reviewed',diagnosisComment:'Mild proteinuria. Repeat test in two weeks.',diagnosisBy:'D-01'});
+ Object.assign(a.readings,{pH:'6.0',Glucose:'Negative',Protein:'2+',Ketones:'Negative',Blood:'Negative',Leukocytes:'Trace',Nitrite:'Negative','Specific gravity':'1.020'});
+ let b=mk(2,{code:'KS-DEMO-002',patient:'Demo Patient B',dob:'1984-11-03',doctor:'Dr. Demo',date:'2026-10-21T11:15',nurse:'N-01',status:'recorded'});
+ Object.assign(b.readings,{pH:'5.5',Glucose:'3+',Protein:'Negative',Ketones:'1+',Blood:'Negative',Leukocytes:'Negative',Nitrite:'Negative'});
+ let c=mk(3,{code:'KS-DEMO-003',patient:'Demo Patient C',dob:'1978-07-25',doctor:'Dr. Demo',date:'2026-10-22T08:00',status:'requested',reqNote:'Routine screening'});
+ let d=mk(4,{code:'KS-DEMO-004',patient:'Demo Patient D',dob:'1995-02-18',doctor:'Dr. Rao',date:'2026-10-23T10:00',nurse:'N-02',status:'recorded'});
+ Object.assign(d.readings,{pH:'7.5',Protein:'1+',Blood:'2+',Leukocytes:'2+',Nitrite:'Positive'});
+ let e=mk(5,{code:'KS-DEMO-005',patient:'Demo Patient E',dob:'1969-09-30',doctor:'Dr. Rao',date:'2026-10-24T14:20',nurse:'N-02',status:'reviewed',diagnosisComment:'Elevated glucose. Advise fasting blood sugar.',diagnosisBy:'D-02'});
+ Object.assign(e.readings,{pH:'5.0',Glucose:'2+',Ketones:'Trace',Protein:'Negative','Specific gravity':'1.030'});
+ let f=mk(6,{code:'KS-DEMO-006',patient:'Demo Patient F',dob:'2001-12-09',doctor:'Dr. Demo',date:'2026-10-25T09:05',nurse:'N-01',status:'recorded'});
+ Object.assign(f.readings,{Protein:'3+',Glucose:'1+',Leukocytes:'3+',Nitrite:'Positive',Blood:'1+'});
+ let g=mk(7,{code:'KS-DEMO-007',patient:'Demo Patient G',dob:'1988-03-14',doctor:'Dr. Rao',date:'2026-10-26T08:30',status:'requested',reqNote:'Urinary frequency'});
+ put([g,f,e,d,c,b,a]);if(force){toast('Demo data restored.');draw()}}
+function show(id){['roles','login','app'].forEach(x=>E(x).hidden=x!==id);window.scrollTo(0,0)}
+function pick(r){role=r;let x=ROLES[r];E('lt').textContent=x[0];E('ld').textContent=x[1];if(x[2])E('il').textContent=x[2];
+ let p=r==='User';E('fStaff').hidden=p;E('fPat').hidden=!p;['uid','pw'].forEach(i=>E(i).required=!p);['pc','pd'].forEach(i=>E(i).required=p);
+ E('lf').reset();E('le').textContent='';show('login');(p?E('pc'):E('uid')).focus()}
+function home(){role=uid=pcode=pdob='';try{sessionStorage.removeItem(S)}catch(e){}show('roles')}
+E('lf').onsubmit=e=>{e.preventDefault();
+ if(role==='User'){pcode=E('pc').value.trim();pdob=E('pd').value}else uid=E('uid').value.trim();
+ try{sessionStorage.setItem(S,JSON.stringify({role,uid,pcode,pdob}))}catch(e){}
+ E('splash').hidden=false;setTimeout(()=>{E('splash').hidden=true;enter()},600)};
+function enter(){seed();show('app');let p=role==='User';E('staff').hidden=p;E('pat').hidden=!p;
+ E('tag').textContent=p?'Patient':role+' · '+uid;
+ E('eb').textContent=role==='User'?'Patient portal':role+' workspace';
+ E('ti').textContent=p?'Your screening result':role==='Doctor'?'Review screening records':'Nursing workspace';
+ E('le2').textContent=p?'Results are released after a doctor has reviewed them.':role==='Doctor'?'Request tests and review readings entered by nursing staff.':'Enter readings for requested tests or walk-in samples.';
+ E('acts').innerHTML=(role==='Doctor'?'<button onclick="newReq()">＋ New test request</button>':role==='Nurse'?'<button onclick="openEnt()">＋ New entry</button>':'')+(role==='Nurse'?'<button class="sec" onclick="nextInQueue()">Next in queue</button>':'')+'<button class="sec" onclick="undoLast()">↶ Undo</button><button class="sec" onclick="exportCSV()">Export CSV</button>';
+ p?drawPat():draw()}
+function draw(){if(role==='User')return;let all=load(),n=s=>all.filter(r=>stat(r)===s).length;
+ let st=[['all','Total',all.length],['requested','Awaiting readings',n('requested')],['recorded','Awaiting review',n('recorded')],['reviewed','Reviewed',n('reviewed')]];
+ let T=all.length||1,rd=n('recorded')+n('reviewed'),SC=['#fff','#ff9f0a',RC[2],RC[1]];
+ E('sum').innerHTML=`<div class="rg">${rings([n('reviewed')/T,rd/T,n('recorded')/T])}</div><div class="lg">${[['Reviewed',n('reviewed'),0],['Readings entered',rd,1],['Awaiting review',n('recorded'),2]].map(x=>`<div><small style="color:${RC[x[2]]}">${x[0]}</small><div class="big" style="color:${RC[x[2]]}">${x[1]}<span>/${all.length}</span></div></div>`).join('')}</div>`;
+ E('stats').innerHTML=st.map((s,i)=>`<button class="stat" aria-pressed="${filter===s[0]}" onclick="filter='${s[0]}';draw()"><span class="small">${s[1]}</span><strong style="color:${SC[i]}">${s[2]}</strong></button>`).join('');
+ let q=E('q').value.toLowerCase(),r=sortRecords(all.filter(x=>(filter==='all'||stat(x)===filter)&&[x.code,x.patient,x.doctor,x.date].join(' ').toLowerCase().includes(q)));
+ E('list').innerHTML=r.length?r.map(x=>{let s=stat(x),ed=role==='Nurse'&&s!=='reviewed';
+ return`<div class="rec"><div><b>${esc(x.patient)}</b><div class="small">${esc(x.code)} · ${esc(x.doctor||'—')}<br>${esc(when(x.date))}</div></div>
+ <div><span class="st ${SN[s][1]}">${SN[s][0]}</span><div class="chips" style="margin-top:8px">${chips(x)}</div></div>
+ <div class="acts"><button class="sec sm" onclick="view(${x.id})">${role==='Doctor'&&s==='recorded'?'Review':'View'}</button>${ed?`<button class="sm" onclick="openEnt(${x.id})">${s==='requested'?'Enter readings':'Edit'}</button>`:''}</div></div>`}).join(''):'<div class="empty">No records match. '+(load().length?'Try another filter or search.':'<button class="sm" onclick="seed(true)">Load demo data</button>')+'</div>'}
+function newReq(){E('fReq').reset();E('rc').value='KS-'+new Date().getFullYear()+'-'+String(load().length+1).padStart(3,'0');E('re').textContent='';E('dReq').showModal();E('rp').focus()}
+E('fReq').onsubmit=e=>{e.preventDefault();let a=load(),c=E('rc').value.trim();
+ if(new Set(a.map(r=>r.code.toLowerCase())).has(c.toLowerCase())){E('re').textContent='This sample code is already in use.';return}
+ a.unshift({id:Date.now(),code:c,patient:E('rp').value.trim(),dob:E('rd').value,doctor:uid,date:new Date().toISOString().slice(0,16),status:'requested',reqNote:E('rn').value.trim(),readings:Object.fromEntries(KEYS.map(k=>[k,'Not recorded']))});
+ put(a);audit('Request '+c+' enqueued by '+uid);E('dReq').close();toast('Test request sent to nursing staff.');draw()};
+E('sels').innerHTML='<h3 style="margin-bottom:10px">Strip parameters</h3><div class="grid2">'+KEYS.map((k,i)=>`<div class="f"><label for="m${i}">${k}</label><select id="m${i}">${['Not recorded',...P[k],'Refer to strip scale'].map(o=>`<option>${o}</option>`).join('')}</select></div>`).join('')+'</div>';
+function openEnt(id){let r=id?load().find(x=>x.id===id):null;E('fEnt').reset();E('ee').textContent='';E('eid').value=id||'';
+ E('et').textContent=r?(stat(r)==='requested'?'Enter readings':'Edit readings'):'New walk-in entry';E('eco').readOnly=!!r;
+ E('eda').value=r?.date||new Date(Date.now()-new Date().getTimezoneOffset()*6e4).toISOString().slice(0,16);
+ if(r){E('edr').value=r.doctor||'';E('epa').value=r.patient||'';E('edb').value=r.dob||'';E('eco').value=r.code;E('eci').value=r.colorimeter||'';E('eno').value=r.notes||'';KEYS.forEach((k,i)=>E('m'+i).value=r.readings?.[k]||'Not recorded')}
+ E('dEnt').showModal()}
+E('fEnt').onsubmit=e=>{e.preventDefault();let a=load(),id=Number(E('eid').value),c=E('eco').value.trim();
+ if(!id&&new Set(a.map(r=>r.code.toLowerCase())).has(c.toLowerCase())){E('ee').textContent='This sample code is already in use.';return}
+ let rd=Object.fromEntries(KEYS.map((k,i)=>[k,E('m'+i).value]));
+ if(!Object.values(rd).some(v=>v!=='Not recorded')){E('ee').textContent='Record at least one reading before saving.';return}
+ let d={code:c,patient:E('epa').value.trim(),dob:E('edb').value,doctor:E('edr').value.trim(),date:E('eda').value,colorimeter:E('eci').value.trim(),notes:E('eno').value.trim(),readings:rd,status:'recorded',nurse:uid};
+ if(id)a=a.map(r=>r.id===id?{...r,...d}:r);else a.unshift({id:Date.now(),...d});
+ put(a);audit('Readings saved for '+c+' by '+uid);E('dEnt').close();toast('Readings saved. Sent to the doctor for review.');draw()};
+function detail(r,full){let g=(l,v)=>`<div class="item"><small>${l}</small><b>${esc(v||'—')}</b></div>`;
+ return`<div class="grid2">${g('Patient',r.patient)}${g('Sample code',r.code)}${g('Date of birth',dob(r.dob))}${g('Doctor',r.doctor)}${g('Sample date',when(r.date))}${g('Colorimeter',r.colorimeter)}</div>
+ ${r.reqNote?`<p><b>Request note:</b> ${esc(r.reqNote)}</p>`:''}<h3>Strip observations</h3><div class="chips">${chips(r,true)}</div>
+ <p class="small">Highlighted values fall outside typical reference ranges. This is a prompt for review, not a diagnosis.</p>
+ ${r.notes?`<p><b>Nurse notes:</b> ${esc(r.notes)}</p>`:''}
+ <p><b>Doctor’s comment:</b> ${esc(r.diagnosisComment||'Not yet entered')}${r.diagnosisBy?` <span class="small">· ${esc(r.diagnosisBy)}</span>`:''}</p>`}
+function view(id){let r=load().find(x=>x.id===id);if(!r)return;viewId=id;E('vt').textContent='Screening record';E('vc').innerHTML=detail(r);
+ let can=role==='Doctor'&&stat(r)!=='requested';E('fCmt').hidden=!can;E('cm').value=r.diagnosisComment||'';E('ce').textContent='';
+ if(role==='Doctor'&&stat(r)==='requested')E('vc').innerHTML+='<p class="notice">Waiting for a nurse to enter readings.</p>';E('dView').showModal()}
+E('fCmt').onsubmit=e=>{e.preventDefault();let c=E('cm').value.trim();if(c.length<3){E('ce').textContent='Enter a comment of at least 3 characters.';return}
+ put(load().map(r=>r.id===viewId?{...r,diagnosisComment:c,diagnosisBy:uid,diagnosisAt:new Date().toISOString(),status:'reviewed'}:r));
+ audit('Record '+((load().find(r=>r.id===viewId)||{}).code||'?')+' reviewed by '+uid);E('dView').close();toast('Comment saved. Record marked reviewed.');draw()};
+function drawPat(){let r0=new Map(load().map(x=>[x.code.toLowerCase(),x])).get(pcode.toLowerCase()),r=r0&&r0.dob===pdob?r0:undefined,b=E('pat');
+ if(!r){b.innerHTML='<div class="card" style="margin-top:20px"><h2>No matching record</h2><p class="mute">Check the sample code and date of birth given by the hospital, then <a href="#" onclick="home();return false">try again</a>.</p></div>';return}
+ b.innerHTML=stat(r)==='reviewed'?`<div class="card" style="margin-top:20px;display:grid;gap:14px"><div class="row"><h2>Sample ${esc(r.code)}</h2><span class="st s3">Reviewed</span></div>${detail(r)}</div>`
+ :`<div class="card" style="margin-top:20px"><div class="row"><h2>Sample ${esc(r.code)}</h2><span class="st ${SN[stat(r)][1]}">${SN[stat(r)][0]}</span></div><p class="mute">${stat(r)==='requested'?'Your test has been requested. The nurse has not entered readings yet.':'Your readings are recorded. They will appear here once your doctor has reviewed them.'}</p><button class="sec sm" onclick="drawPat()">Refresh</button></div>`}
+function exportCSV(){let a=load();if(!a.length){toast('No records to export.');return}
+ let h=['code','patient','dob','doctor','date','status','colorimeter','nurse','notes','diagnosisComment','diagnosisBy',...KEYS];
+ let cell=v=>{v=String(v??'');if(/^[=+\-@]/.test(v))v="'"+v;return'"'+v.replace(/"/g,'""')+'"'};
+ let csv=[h,...a.map(r=>h.map(k=>k==='status'?stat(r):KEYS.includes(k)?r.readings?.[k]:r[k]))].map(r=>r.map(cell).join(',')).join('\r\n');
+ let l=document.createElement('a');l.href=URL.createObjectURL(new Blob([csv],{type:'text/csv;charset=utf-8'}));l.download='urinesense-records.csv';l.click();URL.revokeObjectURL(l.href)}
+/* =====================================================================
+   DATA STRUCTURES LAYER
+   Linear: Array, Queue, Stack, Singly linked list
+   Non-linear: Binary search tree, n-ary hierarchy tree, Graph (BFS/DFS)
+   Hashing: Set, Map, Dictionary (plain object)
+   Algorithms: linear / binary / BST / hash search, bubble / insertion / merge / quick sort
+   ===================================================================== */
+const cs=(a,b)=>a<b?-1:a>b?1:0;
+class LNode{constructor(v){this.v=v;this.next=null}}
+class LinkedList{constructor(){this.head=null;this.tail=null;this.size=0}
+ append(v){const n=new LNode(v);if(this.tail)this.tail.next=n;else this.head=n;this.tail=n;this.size++}
+ removeFirst(){if(!this.head)return;this.head=this.head.next;if(!this.head)this.tail=null;this.size--}
+ toArray(){const o=[];for(let c=this.head;c;c=c.next)o.push(c.v);return o}}
+class Stack{constructor(){this.a=[]}push(x){this.a.push(x)}pop(){return this.a.pop()}peek(){return this.a[this.a.length-1]}get size(){return this.a.length}}
+class Queue{constructor(){this.a=[];this.h=0}enqueue(x){this.a.push(x)}dequeue(){return this.h<this.a.length?this.a[this.h++]:undefined}peek(){return this.a[this.h]}get size(){return this.a.length-this.h}toArray(){return this.a.slice(this.h)}}
+class BST{constructor(){this.root=null;this.n=0}
+ insert(k,v){const nd={k,v,l:null,r:null};if(!this.root){this.root=nd;this.n=1;return}let c=this.root;for(;;){const m=cs(k,c.k);if(!m){c.v=v;return}const s=m<0?'l':'r';if(!c[s]){c[s]=nd;this.n++;return}c=c[s]}}
+ static balanced(items){const t=new BST(),go=(lo,hi)=>{if(lo>hi)return;const m=(lo+hi)>>1;t.insert(items[m][0],items[m][1]);go(lo,m-1);go(m+1,hi)};go(0,items.length-1);return t}
+ search(k){let c=this.root;const path=[];while(c){path.push(c.k);const m=cs(k,c.k);if(!m)return{node:c,path};c=m<0?c.l:c.r}return{node:null,path}}
+ inorder(n=this.root,o=[]){if(n){this.inorder(n.l,o);o.push(n.k);this.inorder(n.r,o)}return o}
+ preorder(n=this.root,o=[]){if(n){o.push(n.k);this.preorder(n.l,o);this.preorder(n.r,o)}return o}
+ postorder(n=this.root,o=[]){if(n){this.postorder(n.l,o);this.postorder(n.r,o);o.push(n.k)}return o}
+ level(){const o=[],q=new Queue();if(this.root)q.enqueue(this.root);while(q.size){const n=q.dequeue();o.push(n.k);if(n.l)q.enqueue(n.l);if(n.r)q.enqueue(n.r)}return o}
+ height(n=this.root){return n?1+Math.max(this.height(n.l),this.height(n.r)):0}
+ min(){let c=this.root;while(c&&c.l)c=c.l;return c&&c.k}
+ max(){let c=this.root;while(c&&c.r)c=c.r;return c&&c.k}}
+class Graph{constructor(){this.adj=new Map()}
+ addV(v){if(!this.adj.has(v))this.adj.set(v,new Set())}
+ addE(a,b){this.addV(a);this.addV(b);if(a!==b){this.adj.get(a).add(b);this.adj.get(b).add(a)}}
+ bfs(s){const seen=new Set([s]),q=new Queue(),o=[];q.enqueue(s);while(q.size){const v=q.dequeue();o.push(v);for(const w of this.adj.get(v)||[])if(!seen.has(w)){seen.add(w);q.enqueue(w)}}return o}
+ dfs(s){const seen=new Set(),o=[],st=new Stack();st.push(s);while(st.size){const v=st.pop();if(seen.has(v))continue;seen.add(v);o.push(v);[...(this.adj.get(v)||[])].reverse().forEach(w=>{if(!seen.has(w))st.push(w)})}return o}
+ path(s,t){const prev=new Map([[s,null]]),q=new Queue();q.enqueue(s);while(q.size){const v=q.dequeue();if(v===t)break;for(const w of this.adj.get(v)||[])if(!prev.has(w)){prev.set(w,v);q.enqueue(w)}}if(!prev.has(t))return null;const p=[];for(let c=t;c!==null;c=prev.get(c))p.unshift(c);return p}
+ components(){const seen=new Set();let n=0;for(const v of this.adj.keys())if(!seen.has(v)){n++;this.bfs(v).forEach(x=>seen.add(x))}return n}
+ edgeCount(){let d=0;this.adj.forEach(s=>d+=s.size);return d/2}}
+
+/* Dictionary (plain object): reference ranges keyed by strip parameter */
+const REF={'pH':'5.0 – 8.0','Specific gravity':'1.005 – 1.030','Glucose':'Negative','Protein':'Negative','Ketones':'Negative','Blood':'Negative','Leukocytes':'Negative','Nitrite':'Negative','Urobilinogen':'Normal – 1 mg/dL','Bilirubin':'Negative'};
+const abnList=r=>KEYS.filter(k=>abn(k,(r.readings||{})[k]));
+const abnN=r=>abnList(r).length;
+const shortCode=c=>String(c).length>12?String(c).slice(-12):String(c);
+
+/* ---------- Sorting ---------- */
+function sortWith(algo,arr,cmp){let a=arr.slice(),c=0;const f=(x,y)=>(c++,cmp(x,y));
+ if(algo==='bubble'){for(let i=0;i<a.length-1;i++){let sw=false;for(let j=0;j<a.length-1-i;j++)if(f(a[j],a[j+1])>0){[a[j],a[j+1]]=[a[j+1],a[j]];sw=true}if(!sw)break}}
+ else if(algo==='insertion'){for(let i=1;i<a.length;i++){const k=a[i];let j=i-1;while(j>=0&&f(a[j],k)>0){a[j+1]=a[j];j--}a[j+1]=k}}
+ else if(algo==='merge'){const ms=x=>{if(x.length<2)return x;const m=x.length>>1,l=ms(x.slice(0,m)),r=ms(x.slice(m)),o=[];let i=0,j=0;while(i<l.length&&j<r.length)o.push(f(l[i],r[j])<=0?l[i++]:r[j++]);return o.concat(l.slice(i),r.slice(j))};a=ms(a)}
+ else{const qs=x=>{if(x.length<2)return x;const p=x[x.length>>1],lo=[],eq=[],hi=[];for(const e of x){const s=e===p?0:f(e,p);(s<0?lo:s>0?hi:eq).push(e)}return qs(lo).concat(eq,qs(hi))};a=qs(a)}
+ return{a,c}}
+const SK={date:r=>new Date(r.date).getTime()||0,patient:r=>(r.patient||'').toLowerCase(),code:r=>(r.code||'').toLowerCase(),abn:abnN,status:r=>({requested:0,recorded:1,reviewed:2})[stat(r)]};
+const SALG={merge:'Merge sort · O(n log n)',quick:'Quick sort · O(n log n) avg',insertion:'Insertion sort · O(n²)',bubble:'Bubble sort · O(n²)'};
+let lastSort='';
+function sortRecords(arr){const k=E('sk').value,algo=E('sa').value,dir=Number(E('sd').value);
+ if(k==='none'){lastSort='';return arr}
+ const res=sortWith(algo,arr,(x,y)=>cs(SK[k](x),SK[k](y))*dir);
+ lastSort=`Sorted ${arr.length} record${arr.length===1?'':'s'} with ${SALG[algo]} — ${res.c} comparisons.`;return res.a}
+
+/* ---------- Audit trail (linked list), undo (stack), queue ---------- */
+const KA='kjurine_audit',UNDO=new Stack();
+const loadAudit=()=>{try{return JSON.parse(localStorage.getItem(KA)||'[]')}catch(e){return[]}};
+function audit(m){const ll=new LinkedList();loadAudit().forEach(x=>ll.append(x));ll.append({t:new Date().toISOString(),m});while(ll.size>40)ll.removeFirst();try{localStorage.setItem(KA,JSON.stringify(ll.toArray()))}catch(e){}}
+function undoLast(){const s=UNDO.pop();if(!s){toast('Nothing to undo.');return}try{localStorage.setItem(K,s)}catch(e){}audit('Undo applied by '+uid);toast('Last change undone ('+UNDO.size+' more in history).');draw()}
+function nextInQueue(){buildDS();const r=DS.q.dequeue();if(!r){toast('Queue is empty. No pending requests.');return}openEnt(r.id)}
+
+/* ---------- Build all structures from stored records ---------- */
+const DS={};
+const lab={tab:'linear',rule:'finding',tq:'',gs:'',ge:'',sq:'',lk:'',pa:'Protein',pb:'Glucose',balg:'bubble'};
+let labTimer=null;
+function linked(a,b,rule){if(rule==='doctor')return !!a.doctor&&a.doctor===b.doctor;const sa=new Set(abnList(a));let n=0;for(const k of abnList(b))if(sa.has(k))n++;return n>=(rule==='finding2'?2:1)}
+function buildDS(){const all=load();DS.arr=all;
+ DS.map=new Map(all.map(r=>[r.code.toLowerCase(),r]));
+ DS.set=new Set(DS.map.keys());
+ const items=sortWith('merge',[...DS.map.entries()],(x,y)=>cs(x[0],y[0])).a;
+ DS.sorted=items.map(x=>x[0]);DS.bst=BST.balanced(items);
+ DS.q=new Queue();all.filter(r=>stat(r)==='requested').sort((a,b)=>a.id-b.id).forEach(r=>DS.q.enqueue(r));
+ DS.g=new Graph();all.forEach(r=>DS.g.addV(r.code.toLowerCase()));
+ for(let i=0;i<all.length;i++)for(let j=i+1;j<all.length;j++)if(linked(all[i],all[j],lab.rule))DS.g.addE(all[i].code.toLowerCase(),all[j].code.toLowerCase());
+ DS.freq={};KEYS.forEach(k=>DS.freq[k]=0);all.forEach(r=>abnList(r).forEach(k=>DS.freq[k]++));
+ DS.audit=new LinkedList();loadAudit().forEach(x=>DS.audit.append(x))}
+const disp=c=>(DS.map.get(c)||{code:c}).code;
+
+/* ---------- Search algorithms (return comparison counts) ---------- */
+function runSearches(key){const arr=DS.arr;
+ const lin=(()=>{let c=0;for(let i=0;i<arr.length;i++){c++;if(arr[i].code.toLowerCase()===key)return{f:1,c,t:'found at index '+i}}return{f:0,c,t:'scanned all '+arr.length+' items'}})();
+ const bin=(()=>{const a=DS.sorted;let lo=0,hi=a.length-1,c=0;const tr=[];while(lo<=hi){const m=(lo+hi)>>1;c++;tr.push(disp(a[m]));if(a[m]===key)return{f:1,c,t:'probed '+tr.join(' → ')};if(a[m]<key)lo=m+1;else hi=m-1}return{f:0,c,t:tr.length?'probed '+tr.join(' → '):'empty array'}})();
+ const tr=DS.bst.search(key),bst={f:tr.node?1:0,c:tr.path.length,t:tr.path.length?'path '+tr.path.map(disp).join(' → '):'tree is empty'};
+ const hm={f:DS.map.has(key)?1:0,c:1,t:'hash(key) → bucket → '+(DS.map.has(key)?'record':'no entry')};
+ return{lin,bin,bst,hm,path:tr.path}}
+
+/* ---------- Main-list integration ---------- */
+const _draw=draw;
+draw=function(){if(role==='User')return;buildDS();_draw();renderLab();E('sortinfo').textContent=lastSort};
+
+/* ---------- Lab rendering ---------- */
+const TABS=[['linear','Linear · Array, Queue, Stack, List'],['tree','Trees'],['graph','Graph'],['setmap','Set · Map · Dictionary'],['search','Searching'],['sort','Sorting']];
+function labTab(t){lab.tab=t;renderLab()}
+function labSet(k,v){lab[k]=v;if(k==='rule')buildDS();renderLab()}
+const optList=(vals,sel)=>vals.map(([v,l])=>`<option value="${esc(v)}"${v===sel?' selected':''}>${esc(l)}</option>`).join('');
+const cellHTML=(txt,sub,cls)=>`<div class="cell ${cls||''}"><small>${esc(sub)}</small>${esc(txt)}</div>`;
+
+const LAB={
+linear(){const all=DS.arr,q=DS.q.toArray(),un=UNDO.a.map(s=>{try{return JSON.parse(s).length}catch(e){return'?'}}).reverse(),au=DS.audit.toArray();
+ return`<div class="ds"><h3>Array — record store</h3><p class="small">Every screening record sits at an index. Reading <b>records[i]</b> is O(1); scanning for a value is O(n). Newest records are inserted at index 0.</p>
+ <div class="cells">${all.slice(0,12).map((r,i)=>cellHTML(shortCode(r.code),'['+i+']')).join('')}${all.length>12?'<div class="cell">… +'+(all.length-12)+'</div>':''}${all.length?'':'<span class="small">Empty array</span>'}</div></div>
+ <div class="ds"><h3>Queue (FIFO) — nurse work queue</h3><p class="small">Doctors <b>enqueue</b> test requests at the rear. The nurse's <b>Next in queue</b> button <b>dequeues</b> the request at the front, so the oldest request is always served first. Size: ${q.length}.</p>
+ <div class="cells">${q.length?q.map((r,i)=>cellHTML(shortCode(r.code),(i===0?'FRONT':i===q.length-1?'REAR':'·')+' '+r.patient,i===0?'hd':'')).join('<span class="ar">→</span>'):'<span class="small">Queue empty — no pending requests.</span>'}</div></div>
+ <div class="ds"><h3>Stack (LIFO) — undo history</h3><p class="small">Each save pushes the previous state of the record store. <b>↶ Undo</b> pops the top snapshot and restores it. Depth: ${un.length}.</p>
+ <div class="cells">${un.length?un.slice(0,8).map((n,i)=>cellHTML(n+' records',i===0?'TOP':'↓',i===0?'hd':'')).join(''):'<span class="small">Stack empty — make a change, then undo it.</span>'}${un.length>8?'<div class="cell">… +'+(un.length-8)+'</div>':''}</div></div>
+ <div class="ds"><h3>Singly linked list — audit trail</h3><p class="small">Each action is appended at the tail in O(1). When the trail passes 40 entries the head node is removed. Nodes: ${au.length}.</p>
+ <div class="chain">${au.length?au.map((x,i)=>`<div class="ln"><small>${i===0?'HEAD · ':''}${i===au.length-1?'TAIL · ':''}${esc(when(x.t))}</small>${esc(x.m)}</div><span class="ar">→</span>`).join('')+'<div class="cell">null</div>':'<span class="small">No actions logged yet.</span>'}</div></div>`},
+
+tree(){const t=DS.bst,key=lab.tq.trim().toLowerCase(),res=key?t.search(key):null,hi=res?res.path:[],n=t.n,ideal=n?Math.ceil(Math.log2(n+1)):0;
+ const byDoc=new Map();DS.arr.forEach(r=>{const d=r.doctor||'(unassigned)';if(!byDoc.has(d))byDoc.set(d,[]);byDoc.get(d).push(r)});
+ return`<div class="ds"><h3>Binary search tree — sample codes</h3><p class="small">Built balanced from the sorted codes. Smaller keys go left, larger go right. Nodes: <b>${n}</b> · height: <b>${t.height()}</b> (ideal ${ideal}) · min: <b>${esc(t.min()?disp(t.min()):'—')}</b> · max: <b>${esc(t.max()?disp(t.max()):'—')}</b></p>
+ <div class="ctl"><input id="tq" list="codes" placeholder="Sample code to find" value="${esc(lab.tq)}"><button class="sm" onclick="labSet('tq',E('tq').value)">Search tree</button></div>
+ ${res?`<p class="small" style="margin-top:8px">${res.node?'Found':'Not found'} after <b>${res.path.length}</b> node visit${res.path.length===1?'':'s'}: ${esc(res.path.map(disp).join(' → ')||'—')}</p>`:''}
+ ${n?treeSVG(t,hi):'<p class="small">No records.</p>'}
+ <table class="dt"><tr><th>Traversal</th><th>Order of sample codes</th></tr>
+ <tr><td>In-order (L, Root, R)</td><td>${esc(t.inorder().map(disp).join(', ')||'—')} <span class="small">← sorted</span></td></tr>
+ <tr><td>Pre-order (Root, L, R)</td><td>${esc(t.preorder().map(disp).join(', ')||'—')}</td></tr>
+ <tr><td>Post-order (L, R, Root)</td><td>${esc(t.postorder().map(disp).join(', ')||'—')}</td></tr>
+ <tr><td>Level-order (queue)</td><td>${esc(t.level().map(disp).join(', ')||'—')}</td></tr></table></div>
+ <div class="ds"><h3>General tree — hospital hierarchy</h3><p class="small">Hospital → doctor → records. Each doctor node has any number of children (n-ary tree), printed with a depth-first walk.</p>
+ <ul class="tr"><li><b>KJ Somaiya Hospital</b><ul class="tr">${[...byDoc].map(([d,rs])=>`<li>${esc(d)} <span class="small">(${rs.length})</span><ul class="tr">${rs.map(r=>`<li>${esc(r.patient)} · ${esc(r.code)} <span class="st ${SN[stat(r)][1]}">${SN[stat(r)][0]}</span></li>`).join('')}</ul></li>`).join('')}</ul></li></ul></div>`},
+
+graph(){const g=DS.g,codes=[...g.adj.keys()];
+ if(!codes.length)return'<div class="ds"><p class="small">No records to graph.</p></div>';
+ const s=g.adj.has(lab.gs)?lab.gs:codes[0],t=g.adj.has(lab.ge)?lab.ge:codes[codes.length-1];
+ const bfs=g.bfs(s),dfs=g.dfs(s),pth=g.path(s,t),order=new Map(bfs.map((v,i)=>[v,i+1]));
+ const pe=new Set();if(pth)for(let i=0;i<pth.length-1;i++){pe.add(pth[i]+'|'+pth[i+1]);pe.add(pth[i+1]+'|'+pth[i])}
+ const W=420,H=360,cx=210,cy=170,R=125,pos=new Map(codes.map((c,i)=>{const a=2*Math.PI*i/codes.length-Math.PI/2;return[c,{x:cx+R*Math.cos(a),y:cy+R*Math.sin(a)}]}));
+ let ed='',nd='';const done=new Set();
+ g.adj.forEach((ns,a)=>ns.forEach(b=>{const k=[a,b].sort().join('|');if(done.has(k))return;done.add(k);const on=pe.has(a+'|'+b);ed+=`<line x1="${pos.get(a).x}" y1="${pos.get(a).y}" x2="${pos.get(b).x}" y2="${pos.get(b).y}" stroke="${on?'#d7263d':'#c4ced5'}" stroke-width="${on?4:1.6}"/>`}));
+ codes.forEach(c=>{const p=pos.get(c),r=DS.map.get(c),fill={requested:'#edf1f4',recorded:'#fff2dc',reviewed:'#e2f6ed'}[stat(r)],on=pth&&pth.includes(c),lx=p.x+(p.x>cx?26:p.x<cx?-26:0),ly=p.y+(p.y>cy?30:p.y<cy?-22:4),an=p.x>cx+5?'start':p.x<cx-5?'end':'middle';
+  nd+=`<circle cx="${p.x}" cy="${p.y}" r="17" fill="${fill}" stroke="${c===s?'#172b3a':on?'#d7263d':'#8fa1ad'}" stroke-width="${c===s||on?3:1.6}"/><text x="${p.x}" y="${p.y+4}" text-anchor="middle" font-size="12" font-weight="800" fill="#172b3a">${order.get(c)||''}</text><text x="${lx}" y="${ly}" text-anchor="${an}" font-size="10.5" font-weight="650" fill="#405766">${esc(shortCode(r.code))}</text>`});
+ const rules=[['finding','Share ≥ 1 abnormal finding'],['finding2','Share ≥ 2 abnormal findings'],['doctor','Same doctor']],vopts=codes.map(c=>[c,DS.map.get(c).code+' · '+DS.map.get(c).patient]);
+ return`<div class="ds"><h3>Graph — related screening records</h3><p class="small">Each record is a vertex. An undirected edge links two records by the rule below, stored as an adjacency list (<b>Map → Set</b>). Vertices: <b>${codes.length}</b> · edges: <b>${g.edgeCount()}</b> · connected components: <b>${g.components()}</b>.</p>
+ <div class="ctl"><label class="small">Edge rule</label><select onchange="labSet('rule',this.value)">${optList(rules,lab.rule)}</select>
+ <label class="small">Start</label><select onchange="labSet('gs',this.value)">${optList(vopts,s)}</select>
+ <label class="small">Target</label><select onchange="labSet('ge',this.value)">${optList(vopts,t)}</select></div>
+ <div class="scroll"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Graph of related screening records">${ed}${nd}</svg></div>
+ <p class="small">Numbers show BFS visit order from the start vertex (dark outline). Red edges are the shortest path to the target. Fill: grey awaiting readings · amber awaiting review · green reviewed.</p>
+ <table class="dt"><tr><th>Algorithm</th><th>Result</th></tr>
+ <tr><td>BFS (queue)</td><td>${esc(bfs.map(disp).join(' → '))}</td></tr>
+ <tr><td>DFS (stack)</td><td>${esc(dfs.map(disp).join(' → '))}</td></tr>
+ <tr><td>Shortest path (BFS)</td><td>${pth?esc(pth.map(disp).join(' → '))+' <span class="small">('+(pth.length-1)+' edge'+(pth.length===2?'':'s')+')</span>':'No path — records are in different components'}</td></tr></table>
+ <h3 style="margin-top:14px">Adjacency list</h3><table class="dt">${codes.map(c=>`<tr><td style="width:150px"><b>${esc(disp(c))}</b></td><td>${[...g.adj.get(c)].map(x=>esc(disp(x))).join(', ')||'<span class="small">no neighbours</span>'}</td></tr>`).join('')}</table></div>`},
+
+setmap(){const sets=p=>new Set(DS.arr.filter(r=>abn(p,(r.readings||{})[p])).map(r=>r.code)),A=sets(lab.pa),B=sets(lab.pb),U=new Set([...A,...B]),I=[...A].filter(x=>B.has(x)),D=[...A].filter(x=>!B.has(x));
+ const ch=a=>[...a].length?[...a].map(x=>`<span class="chip">${esc(x)}</span>`).join(''):'<span class="small">∅ empty set</span>';
+ const key=lab.lk.trim().toLowerCase(),hit=key?DS.map.get(key):null,docs=new Set(DS.arr.map(r=>r.doctor).filter(Boolean)),bySt=new Map();DS.arr.forEach(r=>bySt.set(stat(r),(bySt.get(stat(r))||0)+1));
+ const mx=Math.max(1,...Object.values(DS.freq)),popt=KEYS.map(k=>[k,k]);
+ return`<div class="ds"><h3>Set — unique values &amp; set algebra</h3><p class="small">A Set keeps only unique members, so duplicate sample codes are rejected in O(1). It holds <b>${DS.set.size}</b> unique codes and <b>${docs.size}</b> unique doctors (${esc([...docs].join(', ')||'—')}).</p>
+ <div class="ctl"><label class="small">Records with abnormal</label><select onchange="labSet('pa',this.value)">${optList(popt,lab.pa)}</select><label class="small">and abnormal</label><select onchange="labSet('pb',this.value)">${optList(popt,lab.pb)}</select></div>
+ <table class="dt"><tr><td style="width:170px"><b>A</b> (${esc(lab.pa)})</td><td><div class="chips">${ch(A)}</div></td></tr><tr><td><b>B</b> (${esc(lab.pb)})</td><td><div class="chips">${ch(B)}</div></td></tr>
+ <tr><td><b>A ∪ B</b> union</td><td><div class="chips">${ch(U)}</div></td></tr><tr><td><b>A ∩ B</b> intersection</td><td><div class="chips">${ch(I)}</div></td></tr><tr><td><b>A − B</b> difference</td><td><div class="chips">${ch(D)}</div></td></tr></table></div>
+ <div class="ds"><h3>Map — code → record (hash index)</h3><p class="small">A Map from sample code to record gives O(1) average lookup. The patient portal uses this same Map. Entries: <b>${DS.map.size}</b>. Status counts: ${[...bySt].map(([k,v])=>`${esc(SN[k][0])} = ${v}`).join(' · ')||'—'}.</p>
+ <div class="ctl"><input id="lk" list="codes" placeholder="Sample code" value="${esc(lab.lk)}"><button class="sm" onclick="labSet('lk',E('lk').value)">Get from Map</button></div>
+ ${key?`<p style="margin-top:8px">${hit?`<b>${esc(hit.patient)}</b> · ${esc(hit.code)} · ${esc(SN[stat(hit)][0])} · ${abnN(hit)} abnormal finding${abnN(hit)===1?'':'s'}`:'<span class="small">map.get() returned undefined — no such sample code.</span>'}</p>`:''}</div>
+ <div class="ds"><h3>Dictionary — reference ranges &amp; finding counts</h3><p class="small">Two key→value dictionaries (plain objects): <code>REF</code> holds the expected range for each strip parameter, and <code>freq</code> counts how often each parameter is abnormal across all records.</p>
+ <table class="dt"><tr><th>Parameter</th><th>Expected (REF)</th><th>Abnormal count (freq)</th></tr>${KEYS.map(k=>`<tr><td>${esc(k)}</td><td>${esc(REF[k])}</td><td><div class="row" style="gap:8px;flex-wrap:nowrap"><div class="hbar" style="width:${Math.round(DS.freq[k]/mx*140)}px"></div><b>${DS.freq[k]}</b></div></td></tr>`).join('')}</table></div>`},
+
+search(){const key=lab.sq.trim().toLowerCase(),R=key?runSearches(key):null,row=(n,o,big,note)=>`<tr><td><b>${n}</b><div class="small">${big}</div></td><td>${o?(o.f?'<span class="chip ok">found</span>':'<span class="chip ab">not found</span>'):'—'}</td><td>${o?'<b>'+o.c+'</b>':'—'}</td><td class="small">${o?esc(o.t):note}</td></tr>`;
+ return`<div class="ds"><h3>Searching — find a sample code four ways</h3><p class="small">The same query is run through four algorithms and the number of comparisons is counted, so the cost difference is visible. Records: <b>${DS.arr.length}</b>.</p>
+ <div class="ctl"><input id="sq" list="codes" placeholder="e.g. KS-DEMO-005" value="${esc(lab.sq)}"><button class="sm" onclick="labSet('sq',E('sq').value)">Run all searches</button></div>
+ <table class="dt"><tr><th>Algorithm</th><th>Result</th><th>Comparisons</th><th>Trace</th></tr>
+ ${row('Linear search',R&&R.lin,'O(n) · works on unsorted array','checks every element in order')}
+ ${row('Binary search',R&&R.bin,'O(log n) · needs sorted array','halves the sorted code array')}
+ ${row('BST search',R&&R.bst,'O(log n) balanced · O(n) worst','walks left/right from the root')}
+ ${row('Hash Map lookup',R&&R.hm,'O(1) average','direct bucket access')}</table></div>`},
+
+sort(){const items=DS.arr.map(r=>({l:String(r.code).slice(-3),v:abnN(r)})),res=['bubble','insertion','merge','quick'].map(a=>[a,sortWith(a,DS.arr,(x,y)=>cs(abnN(x),abnN(y))).c]);
+ return`<div class="ds"><h3>Sorting — watch the algorithms work</h3><p class="small">Bars show the number of abnormal findings per record (label = last 3 characters of the sample code). Pick an algorithm and press Run.</p>
+ <div class="ctl"><select id="balg">${optList(Object.keys(SALG).map(k=>[k,SALG[k]]),lab.balg)}</select><button class="sm" onclick="runSort()">▶ Run</button><button class="sm sec" onclick="renderLab()">Reset</button><span id="bstat" class="small"></span></div>
+ <div id="bars" class="bars"></div></div>
+ <div class="ds"><h3>Comparisons on your data</h3><p class="small">Sorting ${DS.arr.length} records by abnormal-finding count. Use the sort controls above the records table to apply any of these to the live list.</p>
+ <table class="dt"><tr><th>Algorithm</th><th>Comparisons</th><th>Complexity</th></tr>${res.map(([a,c])=>`<tr><td>${esc(SALG[a].split(' · ')[0])}</td><td><b>${c}</b></td><td class="small">${esc(SALG[a].split(' · ')[1])}</td></tr>`).join('')}</table></div>`}
+};
+function treeSVG(t,hi){const pos=new Map();let x=0;const go=(n,d)=>{if(!n)return;go(n.l,d+1);pos.set(n.k,{x:x++,y:d,n});go(n.r,d+1)};go(t.root,0);
+ const W=Math.max(1,x)*98+20,H=t.height()*64+20;let e='',v='';
+ pos.forEach(p=>[p.n.l,p.n.r].forEach(c=>{if(c){const q=pos.get(c.k);e+=`<line x1="${p.x*98+59}" y1="${p.y*64+30}" x2="${q.x*98+59}" y2="${q.y*64+30}" stroke="#c4ced5" stroke-width="2"/>`}}));
+ pos.forEach((p,k)=>{const on=hi.includes(k);v+=`<rect x="${p.x*98+14}" y="${p.y*64+14}" width="90" height="32" rx="10" fill="${on?'#d7263d':'#fff'}" stroke="${on?'#d7263d':'#b6c3cc'}" stroke-width="2"/><text x="${p.x*98+59}" y="${p.y*64+35}" text-anchor="middle" font-size="11.5" font-weight="700" fill="${on?'#fff':'#172b3a'}">${esc(shortCode(p.n.v.code))}</text>`});
+ return`<div class="scroll"><svg viewBox="0 0 ${W} ${H}" width="${W}" height="${H}" role="img" aria-label="Binary search tree of sample codes">${e}${v}</svg></div>`}
+function setBars(f){const el=E('bars');if(!el)return;const mx=Math.max(1,...f.a.map(x=>x.v));el.innerHTML=f.a.slice(0,40).map((x,i)=>`<div class="bw"><div class="b ${f.h.includes(i)?'on':''}" style="height:${14+x.v/mx*110}px"><span>${x.v}</span></div><small>${esc(x.l)}</small></div>`).join('')}
+function frames(algo,vals){const a=vals.map(x=>({...x})),F=[{a:a.map(x=>({...x})),h:[]}],snap=h=>F.push({a:a.map(x=>({...x})),h}),sw=(i,j)=>{[a[i],a[j]]=[a[j],a[i]]};
+ if(algo==='bubble'){for(let i=0;i<a.length-1;i++)for(let j=0;j<a.length-1-i;j++)if(a[j].v>a[j+1].v){sw(j,j+1);snap([j,j+1])}}
+ else if(algo==='insertion'){for(let i=1;i<a.length;i++){const k=a[i];let j=i-1;while(j>=0&&a[j].v>k.v){a[j+1]=a[j];j--;snap([j+1])}a[j+1]=k;snap([j+1])}}
+ else if(algo==='merge'){const ms=(l,r)=>{if(l>=r)return;const m=(l+r)>>1;ms(l,m);ms(m+1,r);const t=a.slice(l,r+1),L=t.slice(0,m-l+1),R=t.slice(m-l+1);let i=0,j=0,k=l;while(i<L.length&&j<R.length){a[k]=L[i].v<=R[j].v?L[i++]:R[j++];snap([k]);k++}while(i<L.length){a[k]=L[i++];snap([k]);k++}while(j<R.length){a[k]=R[j++];snap([k]);k++}};ms(0,a.length-1)}
+ else{const qs=(lo,hi)=>{if(lo>=hi)return;const p=a[hi].v;let i=lo;for(let j=lo;j<hi;j++)if(a[j].v<p){sw(i,j);snap([i,j]);i++}sw(i,hi);snap([i,hi]);qs(lo,i-1);qs(i+1,hi)};qs(0,a.length-1)}
+ return F}
+function runSort(){clearInterval(labTimer);const algo=E('balg').value;lab.balg=algo;const F=frames(algo,DS.arr.map(r=>({l:String(r.code).slice(-3),v:abnN(r)})));let i=0;
+ labTimer=setInterval(()=>{if(!E('bars')){clearInterval(labTimer);return}setBars(F[i]);E('bstat').textContent='Step '+i+' / '+(F.length-1);if(++i>=F.length)clearInterval(labTimer)},300)}
+function renderLab(){const el=E('lab');if(!el||role==='User')return;clearInterval(labTimer);
+ el.innerHTML=`<div class="eyebrow">Data structures lab</div><h2>How UrineSense stores, links, finds and orders records</h2><p class="small">Every panel below reads the same live records. Change data (new request, save readings, review) and the structures update.</p>
+ <div class="tabs" role="tablist">${TABS.map(([k,l])=>`<button class="tab" role="tab" aria-selected="${lab.tab===k}" onclick="labTab('${k}')">${l}</button>`).join('')}</div>
+ <datalist id="codes">${DS.arr.map(r=>`<option value="${esc(r.code)}">`).join('')}</datalist><div id="labBody">${LAB[lab.tab]()}</div>`;
+ if(lab.tab==='sort')setBars({a:DS.arr.map(r=>({l:String(r.code).slice(-3),v:abnN(r)})),h:[]})}
+
+document.querySelectorAll('dialog').forEach(d=>d.addEventListener('click',e=>{if(e.target===d)d.close()}));
+try{let s=JSON.parse(sessionStorage.getItem(S));if(s&&s.role){({role,uid,pcode,pdob}=s);enter()}}catch(e){}
+</script></body></html>
